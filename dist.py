@@ -2,6 +2,16 @@ from scipy.spatial.distance import cityblock
 import sys
 import re
 
+def distances(vehicle_number, start_point, rides):
+    dist_map = {}
+    a = [ start_point['finish_row'], start_point['finish_col'] ]
+    for ride in rides:
+        b = [ ride['start_row'], ride['start_col'] ]
+        ride_number = ride['ride_number']
+        dist = cityblock(a, b)
+        dist_map[vehicle_number, ride_number] = dist
+    return dist_map
+
 filename = sys.argv[1]
 
 file = open(filename, 'r')
@@ -16,6 +26,7 @@ bonus = int(params[4])
 T = int(params[5])
 
 rides = []
+ride_number = 0
 for line in file:
     line = line.strip()
     ride = {}
@@ -27,9 +38,10 @@ for line in file:
     s = int(params[4])
     f = int(params[5])
 
-    ride = {'start_row': a, 'start_col': b, 'finish_row': x, 'finish_col': y, 'earliest_start': s, 'latest_finish': f}
+    ride = {'start_row': a, 'start_col': b, 'finish_row': x, 'finish_col': y, 'earliest_start': s, 'latest_finish': f, 'ride_number' : ride_number}
 
     rides.append(ride) 
+    ride_number = ride_number + 1
 
 s = cityblock([1,1], [1,2])
 print(s)
