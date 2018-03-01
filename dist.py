@@ -2,9 +2,12 @@ from scipy.spatial.distance import cityblock
 import sys
 import re
 
+# start point [x,y]
+# vehicle_number a number
+# rides array of dicts
 def distances(vehicle_number, start_point, rides):
     dist_map = {}
-    a = [ start_point['finish_row'], start_point['finish_col'] ]
+    a = start_point
     for ride in rides:
         b = [ ride['start_row'], ride['start_col'] ]
         ride_number = ride['ride_number']
@@ -48,4 +51,4 @@ print(s)
 
 print(rides)
 
-
+print(distances(0, [0,0], rides))
