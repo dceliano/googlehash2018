@@ -8,11 +8,11 @@ file = open(filename, 'r')
 
 first_line = file.readline().strip()
 params = first_line.split(' ')
-R = int(params[0])
-C = int(params[1])
-F = int(params[2])
-N = int(params[3])
-B = int(params[4])
+rows = int(params[0])
+cols = int(params[1])
+n_vehicles = int(params[2])
+n_rides = int(params[3])
+bonus = int(params[4])
 T = int(params[5])
 
 rides = []
@@ -27,7 +27,7 @@ for line in file:
     s = int(params[4])
     f = int(params[5])
 
-    ride = {'a': a, 'b': b, 'x': x, 'y': y, 's': s, 'f': f}
+    ride = {'start_row': a, 'start_col': b, 'finish_row': x, 'finish_col': y, 'earliest_start': s, 'latest_finish': f}
 
     rides.append(ride) 
 
@@ -35,3 +35,5 @@ s = cityblock([1,1], [1,2])
 print(s)
 
 print(rides)
+
+
