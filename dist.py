@@ -3,16 +3,15 @@ import sys
 import re
 
 # start point [x,y]
-# vehicle_number a number
 # rides array of dicts
-def distances(vehicle_number, start_point, rides):
+def distances(start_point, rides):
     dist_map = {}
     a = start_point
     for ride in rides:
         b = [ ride['start_row'], ride['start_col'] ]
         ride_number = ride['ride_number']
         dist = cityblock(a, b)
-        dist_map[vehicle_number, ride_number] = dist
+        dist_map[ride_number] = dist
     return dist_map
 
 filename = sys.argv[1]
@@ -51,4 +50,4 @@ print(s)
 
 print(rides)
 
-print(distances(0, [0,0], rides))
+print(distances([0,0], rides))
